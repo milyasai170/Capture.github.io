@@ -1,0 +1,16 @@
+#version 100
+
+uniform mediump mat3 N;
+uniform mediump mat4 WVP;
+
+attribute mediump vec4 pos;
+varying mediump vec3 wnormal;
+attribute mediump vec2 nor;
+
+void main()
+{
+    mediump vec4 spos = vec4(pos.xyz, 1.0);
+    wnormal = normalize(N * vec3(nor, pos.w));
+    gl_Position = WVP * spos;
+}
+
